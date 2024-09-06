@@ -1,0 +1,19 @@
+version: '3.4'
+
+services:
+  mottuapi:
+    build: .
+    ports:
+      - "8080:80"
+    depends_on:
+      - mysql
+    environment:
+      - ConnectionStrings__DefaultConnection=Server=mysql;Database=mottu_tech_test;User=root;Password=password;
+
+  mysql:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: mottu_tech_test
+    ports:
+      - "3306:3306"
